@@ -1,4 +1,5 @@
 import { BRAND } from "@/lib/seo/brand";
+import { SERVICES } from "@/lib/constants";
 
 /**
  * 6 Pilar Utama Navigasi Sitelinks Artic Analytica (Target 6-Pack Sitelinks Google SERP)
@@ -152,6 +153,20 @@ export function buildOrganizationJsonLd() {
         availableLanguage: ["Indonesian", "English"],
       },
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Artic Analytica Research & Consulting Services",
+      itemListElement: SERVICES.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": `${BRAND.url}/#service-${service.id}`,
+          name: service.title,
+          description: service.description,
+          provider: { "@id": `${BRAND.url}/#organization` },
+        },
+      })),
+    },
   };
 }
 
