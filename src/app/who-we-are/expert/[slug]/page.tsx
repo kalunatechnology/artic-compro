@@ -101,13 +101,44 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/seo/brand";
+
 export default async function ExpertProfilePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const expert = EXPERTS.find((e) => e.slug === slug);
   if (!expert) return notFound();
 
+  const expertSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BRAND.url}/who-we-are/expert/${expert.slug}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BRAND.url}/` },
+          { "@type": "ListItem", position: 2, name: "Who We Are", item: `${BRAND.url}/who-we-are` },
+          { "@type": "ListItem", position: 3, name: expert.name, item: `${BRAND.url}/who-we-are/expert/${expert.slug}` },
+        ],
+      },
+      {
+        "@type": "Person",
+        "@id": `${BRAND.url}/who-we-are/expert/${expert.slug}#person`,
+        name: expert.name,
+        jobTitle: expert.role,
+        image: expert.image ? `${BRAND.url}${expert.image}` : undefined,
+        description: expert.bio.join(" "),
+        worksFor: {
+          "@id": `${BRAND.url}/#organization`,
+        },
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd id={`expert-schema-${expert.slug}`} data={expertSchema} />
       <Navbar />
       <ExpertProfileBannerSection expert={expert} />
       <ExpertProfileBioSection expert={expert} />

@@ -52,13 +52,44 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/seo/brand";
+
 export default async function TechnicalProfilePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const member = TECHNICAL_TEAM.find((m) => m.slug === slug);
   if (!member) return notFound();
 
+  const memberSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BRAND.url}/who-we-are/technical/${member.slug}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BRAND.url}/` },
+          { "@type": "ListItem", position: 2, name: "Who We Are", item: `${BRAND.url}/who-we-are` },
+          { "@type": "ListItem", position: 3, name: member.name, item: `${BRAND.url}/who-we-are/technical/${member.slug}` },
+        ],
+      },
+      {
+        "@type": "Person",
+        "@id": `${BRAND.url}/who-we-are/technical/${member.slug}#person`,
+        name: member.name,
+        jobTitle: member.role,
+        image: member.image ? `${BRAND.url}${member.image}` : undefined,
+        description: member.bio.join(" "),
+        worksFor: {
+          "@id": `${BRAND.url}/#organization`,
+        },
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd id={`technical-schema-${member.slug}`} data={memberSchema} />
       <Navbar />
       <ExpertProfileBannerSection expert={member} variant="technical" />
       <ExpertProfileBioSection expert={member} />

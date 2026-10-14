@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ContactHeroSection } from "@/components/sections/contact-hero-section";
 import { ContactFormSection } from "@/components/sections/contact-form-section";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <SectionPageJsonLd section="contact" />
       <Navbar />
       <ContactHeroSection />
       <ContactFormSection />

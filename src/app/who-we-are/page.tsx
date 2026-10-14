@@ -6,6 +6,7 @@ import { WhoWeAreExpertiseSection } from "@/components/sections/who-we-are-exper
 import { WhoWeAreCeoSection } from "@/components/sections/who-we-are-ceo-section";
 import { WhoWeAreTeamSection } from "@/components/sections/who-we-are-team-section";
 import { WhoWeAreExpertSectionResponsive } from "@/components/sections/who-we-are-expert-section-responsive";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 
 export const metadata: Metadata = {
   title: "Who We Are",
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
 export default function WhoWeArePage() {
   return (
     <>
+      <SectionPageJsonLd section="who-we-are" />
       <Navbar />
       <WhoWeAreHeroSection />
       <WhoWeAreExpertiseSection />

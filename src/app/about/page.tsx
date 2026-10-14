@@ -7,6 +7,7 @@ import { AboutVideoSection } from "@/components/sections/about-video-section";
 import { AboutVisionSection } from "@/components/sections/about-vision-section";
 import { AboutWhySection } from "@/components/sections/about-why-section";
 import { AboutHighlightSection } from "@/components/sections/about-highlight-section";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 
 export const metadata: Metadata = {
   title: "About Artic",
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <SectionPageJsonLd section="about" />
       <Navbar />
       <main>
         <AboutHeroSection />

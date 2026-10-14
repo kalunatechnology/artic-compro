@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -10,6 +11,8 @@ import { WorksDetailResultsSection } from "@/components/sections/works-detail-re
 import { WorksDetailVideoSection } from "@/components/sections/works-detail-video-section";
 import { WorksDetailQuoteSection } from "@/components/sections/works-detail-quote-section";
 import { WorksDetailRelatedSection } from "@/components/sections/works-detail-related-section";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/seo/brand";
 
 const WORKS = [
   {
@@ -468,8 +471,42 @@ export default async function WorksDetailPage({ params }: { params: Promise<{ id
     pdfHref: w.pdfHref,
   }));
 
+  const workSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BRAND.url}/works/${work.id}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BRAND.url}/` },
+          { "@type": "ListItem", position: 2, name: "Our Works", item: `${BRAND.url}/works` },
+          { "@type": "ListItem", position: 3, name: work.title, item: `${BRAND.url}/works/${work.id}` },
+        ],
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": `${BRAND.url}/works/${work.id}#project`,
+        name: work.title,
+        headline: work.overview.headline,
+        description: work.overview.body,
+        image: `${BRAND.url}${work.heroImage}`,
+        creator: {
+          "@id": `${BRAND.url}/#organization`,
+        },
+        provider: {
+          "@id": `${BRAND.url}/#organization`,
+        },
+        isPartOf: {
+          "@id": `${BRAND.url}/#website`,
+        },
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd id={`work-schema-${work.id}`} data={workSchema} />
       <Navbar />
       <main>
         <WorksDetailHeroSection

@@ -8,8 +8,10 @@ import { ArticResearchOffersSection } from "@/components/sections/artic-research
 import { ArticResearchHowWeWorkSection } from "@/components/sections/artic-research-how-we-work-section";
 import { ArticResearchWhatYouGetSection } from "@/components/sections/artic-research-what-you-get-section";
 import { ArticResearchPortfolioSection } from "@/components/sections/artic-research-portfolio-section";
-import { JsonLd } from "@/components/common/json-ld";
+import { JsonLd } from "@/components/seo/JsonLd";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
+import { BRAND } from "@/lib/seo/brand";
 
 export const metadata: Metadata = {
   title: "Artic Research",
@@ -34,19 +36,20 @@ export const metadata: Metadata = {
 export default function ArticResearchPage() {
   return (
     <>
+      <SectionPageJsonLd section="artic-research" />
       <JsonLd
+        id="artic-research-service-schema"
         data={{
           "@context": "https://schema.org",
           "@type": "Service",
+          "@id": `${BRAND.url}/artic-research#service`,
           name: "Artic Research",
           description:
             "We explore what people think, feel, and need — turning voices into clear insights that lead to better actions.",
           provider: {
-            "@type": "Organization",
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.url,
+            "@id": `${BRAND.url}/#organization`,
           },
-          url: `${SITE_CONFIG.url}/artic-research`,
+          url: `${BRAND.url}/artic-research`,
         }}
       />
       <Navbar />

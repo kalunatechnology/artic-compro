@@ -7,6 +7,7 @@ import { ChevronDown, ChevronRight, Loader2, Search } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ArticleCard } from "@/components/common/article-card";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 
 const ARTICLES = [
   { id: 1, timestamp: new Date("2025-02-17"), date: "17 Februari 2025", title: "Quality Transformation: Artic Achieves ISO 9001 — Setting the Gold Standard in Data Consulting", thumbnail: "/images/insight/thumbnail-1.png", href: "/blog/1" },
@@ -43,6 +44,7 @@ export default function UpdatesPage() {
 
   return (
     <>
+      <SectionPageJsonLd section="blog" />
       <Navbar />
 
       {/* HERO — taller to allow card overlap */}

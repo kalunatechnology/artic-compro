@@ -11,8 +11,9 @@ import { InsightSection } from "@/components/sections/insight-section";
 import { HighlightSection } from "@/components/sections/highlight-section";
 import { HowWeWorkSection } from "@/components/sections/how-we-work-section";
 import { VideoCardSection } from "@/components/sections/video-card-section";
-import { JsonLd } from "@/components/common/json-ld";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE_CONFIG } from "@/lib/constants";
+import { BRAND } from "@/lib/seo/brand";
 
 export const metadata: Metadata = {
   title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,
@@ -39,17 +40,21 @@ export default function Home() {
   return (
     <>
       <JsonLd
+        id="home-webpage-schema"
         data={{
           "@context": "https://schema.org",
           "@type": "WebPage",
+          "@id": `${BRAND.url}/#webpage`,
           name: `${SITE_CONFIG.name} — ${SITE_CONFIG.tagline}`,
           description: SITE_CONFIG.description,
-          url: SITE_CONFIG.url,
+          url: `${BRAND.url}/`,
           isPartOf: {
-            "@type": "WebSite",
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.url,
+            "@id": `${BRAND.url}/#website`,
           },
+          about: {
+            "@id": `${BRAND.url}/#organization`,
+          },
+          inLanguage: "en-US",
         }}
       />
       <Navbar />

@@ -7,6 +7,8 @@ import { notFound } from "next/navigation";
 import { Copy, Mail } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/seo/brand";
 
 const ARTICLES = [
   { id: 1, timestamp: new Date("2025-02-17"), date: "17 Februari 2025", title: "Quality Transformation: Artic Achieves ISO 9001 — Setting the Gold Standard in Data Consulting", thumbnail: "/images/insight/thumbnail-1.png", category: "Achievement", author: "Artic Analytica" },
@@ -113,8 +115,43 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ slug: 
 
   const otherArticles = ARTICLES.filter((a) => a.id !== article.id).slice(0, 3);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BRAND.url}/blog/${article.id}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BRAND.url}/` },
+          { "@type": "ListItem", position: 2, name: "Artic Updates", item: `${BRAND.url}/blog` },
+          { "@type": "ListItem", position: 3, name: article.title, item: `${BRAND.url}/blog/${article.id}` },
+        ],
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": `${BRAND.url}/blog/${article.id}#article`,
+        headline: article.title,
+        datePublished: article.timestamp.toISOString(),
+        image: `${BRAND.url}${article.thumbnail}`,
+        author: {
+          "@type": "Organization",
+          name: article.author || BRAND.name,
+          url: BRAND.url,
+        },
+        publisher: {
+          "@id": `${BRAND.url}/#organization`,
+        },
+        isPartOf: {
+          "@id": `${BRAND.url}/#website`,
+        },
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd id={`article-schema-${article.id}`} data={articleSchema} />
       <Navbar />
 
       {/* HERO — bg #2020D3, gradient fades to #080817 at bottom */}

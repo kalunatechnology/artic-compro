@@ -5,6 +5,7 @@ import { WorksHeroSection } from "@/components/sections/works-hero-section";
 import { HighlightSection } from "@/components/sections/highlight-section";
 import { Container } from "@/components/layout/container";
 import { WorksPortfolioSection } from "@/components/sections/works-portfolio-section";
+import SectionPageJsonLd from "@/components/seo/SectionPageJsonLd";
 
 export const metadata: Metadata = {
   title: "Our Works",
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 export default function WorksPage() {
   return (
     <>
+      <SectionPageJsonLd section="works" />
       <Navbar />
       <main>
         <WorksHeroSection />

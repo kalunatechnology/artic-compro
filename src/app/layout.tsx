@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
-import { JsonLd } from "@/components/common/json-ld";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  buildOrganizationJsonLd,
+  buildWebSiteJsonLd,
+  buildSiteNavigationElementJsonLd,
+} from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,6 +33,7 @@ export const metadata: Metadata = {
     "business intelligence",
     "data visualization",
     "Indonesia",
+    "Semarang",
   ],
   authors: [{ name: SITE_CONFIG.name, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.name,
@@ -42,6 +48,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
   },
   alternates: {
     canonical: "/",
@@ -80,42 +89,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rootSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      buildOrganizationJsonLd(),
+      buildWebSiteJsonLd(),
+      ...buildSiteNavigationElementJsonLd(),
+    ],
+  };
+
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased`}>
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.url,
-            logo: `${SITE_CONFIG.url}/assets/Logo.svg`,
-            description: SITE_CONFIG.description,
-            sameAs: [
-              `https://www.instagram.com/${SITE_CONFIG.instagram}/`,
-              `https://linkedin.com/company/${SITE_CONFIG.linkedin}`,
-              `https://twitter.com/${SITE_CONFIG.twitter.replace("@", "")}`,
-            ],
-            contactPoint: {
-              "@type": "ContactPoint",
-              contactType: "customer service",
-              availableLanguage: ["English", "Indonesian"],
-            },
-          }}
-        />
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: SITE_CONFIG.name,
-            url: SITE_CONFIG.url,
-            description: SITE_CONFIG.description,
-            publisher: {
-              "@type": "Organization",
-              name: SITE_CONFIG.name,
-            },
-          }}
-        />
+        <JsonLd id="root-entity-graph" data={rootSchema} />
         {children}
       </body>
     </html>
