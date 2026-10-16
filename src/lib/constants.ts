@@ -1,9 +1,11 @@
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Works", href: "/works" },
-  { label: "Contact", href: "/contact" },
+  { label: "About Artic", href: "/about" },
+  { label: "Our Works", href: "/works" },
+  { label: "Artic Research", href: "/artic-research" },
+  { label: "Who We Are", href: "/who-we-are" },
+  { label: "Artic Updates", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
 ] as const;
 
 export const SERVICES = [

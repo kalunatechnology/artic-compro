@@ -437,6 +437,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: work.title,
     description,
+    keywords: [
+      work.title,
+      work.client,
+      work.service,
+      work.category,
+      "Artic Analytica project",
+      "studi kasus riset data",
+    ],
     alternates: {
       canonical: `/works/${work.id}`,
     },

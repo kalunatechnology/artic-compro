@@ -84,6 +84,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: expert.name,
     description,
+    keywords: [
+      expert.name,
+      expert.role,
+      ...expert.fields,
+      "pakar Artic Analytica",
+      "konsultan kebijakan publik",
+    ],
     alternates: {
       canonical: `/who-we-are/expert/${expert.slug}`,
     },

@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with Artic Analytica. Reach out for research, data consulting, strategy, or any inquiries about our services.",
+  keywords: [
+    "Contact Artic Analytica",
+    "konsultasi riset data semarang",
+    "kantor Artic Analytica MG Setos",
+    "kontak konsultan kebijakan publik",
+    "free research consultation",
+    "proposal riset kepuasan masyarakat",
+    "PT Sinergi Muda Arsa kontak",
+  ],
   alternates: {
     canonical: "/contact",
   },

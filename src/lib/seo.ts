@@ -111,6 +111,51 @@ export function buildOrganizationJsonLd() {
     legalName: BRAND.legalName,
     alternateName: BRAND.alternateNames,
     url: BRAND.url,
+    foundingDate: BRAND.foundingDate,
+    founder: {
+      "@type": "Person",
+      name: BRAND.founder,
+      jobTitle: "Chief Executive Officer & Founder",
+      url: `${BRAND.url}/who-we-are/technical/rian-destianto`,
+    },
+    member: [
+      {
+        "@type": "Person",
+        name: "Rian Destianto",
+        jobTitle: "Chief Executive Officer & Founder",
+        url: `${BRAND.url}/who-we-are/technical/rian-destianto`,
+      },
+      {
+        "@type": "Person",
+        name: "Drs. Yuwanto, M.Si, P.hD.",
+        jobTitle: "Political Science & Government Senior Expert",
+        url: `${BRAND.url}/who-we-are/expert/yuwanto`,
+      },
+      {
+        "@type": "Person",
+        name: "HUNTAL HUTAPEA, S.A.P., M.SI., M.ED",
+        jobTitle: "Public Policy Senior Expert",
+        url: `${BRAND.url}/who-we-are/expert/huntal-hutapea`,
+      },
+      {
+        "@type": "Person",
+        name: "Enar Ratriany Assa, SIP., MH",
+        jobTitle: "Political & Government Expert",
+        url: `${BRAND.url}/who-we-are/expert/enar-ratriany-assa`,
+      },
+      {
+        "@type": "Person",
+        name: "Ayunina Zenti, S.P., M.Sc.",
+        jobTitle: "Management & Agribusiness Expert",
+        url: `${BRAND.url}/who-we-are/expert/ayunina-zenti`,
+      },
+      {
+        "@type": "Person",
+        name: "Fitria Barokah, S.IP., M.IP.",
+        jobTitle: "Political Science Expert",
+        url: `${BRAND.url}/who-we-are/expert/fitria-barokah`,
+      },
+    ],
     logo: {
       "@type": "ImageObject",
       "@id": `${BRAND.url}/#logo`,
@@ -135,6 +180,15 @@ export function buildOrganizationJsonLd() {
       latitude: BRAND.geo.latitude,
       longitude: BRAND.geo.longitude,
     },
+    areaServed: BRAND.areaServed,
+    serviceType: [
+      "Public Opinion Research",
+      "Citizen Satisfaction Survey (IKM)",
+      "Public Policy Advisory & Evaluation",
+      "Strategic Decision Consulting",
+      "Business Intelligence & Data Visualization",
+      "Market Feasibility Studies",
+    ],
     sameAs: [
       BRAND.social.instagram,
       BRAND.social.linkedin,
@@ -171,7 +225,8 @@ export function buildOrganizationJsonLd() {
 }
 
 /**
- * Membangun Schema WebSite lengkap dengan publisher & deklarasi hasPart sitelinks.
+ * Membangun Schema WebSite lengkap dengan publisher, deklarasi hasPart sitelinks,
+ * dan potentialAction Sitelinks Searchbox (Google & Apple.com standard).
  */
 export function buildWebSiteJsonLd() {
   return {
@@ -186,6 +241,14 @@ export function buildWebSiteJsonLd() {
       "@id": `${BRAND.url}/#organization`,
     },
     inLanguage: "en-US",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BRAND.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
     hasPart: SITE_NAVIGATION_ITEMS.map((item) => ({
       "@type": "WebPage",
       "@id": `${BRAND.url}${item.href}#webpage`,

@@ -24,7 +24,7 @@ const COMPANY_LINKS = [
   { label: "Our Works", href: "/works" },
   { label: "About Artic", href: "/about" },
   { label: "Who We Are", href: "/who-we-are" },
-  { label: "Artic Update", href: "/blog" },
+  { label: "Artic Updates", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -282,7 +282,7 @@ export function Footer({ hideCta = false }: { hideCta?: boolean }) {
 
         <div className="relative z-10 mt-9 border-t border-[#7070E5] bg-[linear-gradient(180deg,#2020D3_0%,#1D1DBE_28%,#161694_100%)] px-5 py-4 text-center">
           <p className="text-[12px] font-normal uppercase leading-[1.3] tracking-[0.72px] text-white">
-            © 2025 PT ARTIC DATA ANALITIKA
+            © 2025 PT SINERGI MUDA ARSA
           </p>
         </div>
       </div>
@@ -600,7 +600,7 @@ export function Footer({ hideCta = false }: { hideCta?: boolean }) {
             </div>
           </div>
           <p className="text-[12px] font-medium text-white lg:text-[13px]">
-            © 2025 PT ARTIC DATA ANALITIKA
+            © 2025 PT SINERGI MUDA ARSA
           </p>
         </div>
       </div>

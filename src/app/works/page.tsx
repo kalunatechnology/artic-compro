@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   title: "Our Works",
   description:
     "Explore Artic Analytica's research, data analysis, and consulting projects that drive real impact for governments, businesses, and organizations.",
+  keywords: [
+    "Our Works Artic Analytica",
+    "portofolio riset kebijakan",
+    "studi kasus BRIDA Kota Semarang",
+    "analisis kepuasan pelayanan publik",
+    "studi daya saing ekspor cengkeh",
+    "business plan sinau print",
+    "evaluasi program pemerintah",
+    "proyek data analytics indonesia",
+  ],
   alternates: {
     canonical: "/works",
   },

@@ -21,6 +21,18 @@ export const metadata: Metadata = {
   title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,
   description:
     "Artic Analytica helps governments, businesses, and organizations make smarter decisions through research, data analysis, and strategy consulting.",
+  keywords: [
+    "Artic Analytica",
+    "Where Data Meets Strategy",
+    "PT Sinergi Muda Arsa",
+    "firma riset data semarang",
+    "konsultan strategi kebijakan publik",
+    "survei kepuasan masyarakat",
+    "data consulting indonesia",
+    "political and government research",
+    "market intelligence",
+    "data visualization indonesia",
+  ],
   alternates: {
     canonical: "/",
   },
@@ -30,6 +42,7 @@ export const metadata: Metadata = {
       "Artic Analytica helps governments, businesses, and organizations make smarter decisions through research, data analysis, and strategy consulting.",
     url: "/",
     type: "website",
+    siteName: SITE_CONFIG.name,
   },
   twitter: {
     title: `${SITE_CONFIG.name} | ${SITE_CONFIG.tagline}`,

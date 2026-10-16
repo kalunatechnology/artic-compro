@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   title: "About Artic",
   description:
     "Artic Analytica is a multidisciplinary research and strategy firm supporting governments, businesses, and organizations in making better, clearer, and more human-centered decisions.",
+  keywords: [
+    "About Artic Analytica",
+    "profil Artic Analytica",
+    "firma riset data terukur",
+    "multidisciplinary research firm",
+    "visi misi Artic Analytica",
+    "konsultan strategi data",
+    "evidence based policy consulting",
+    "PT Sinergi Muda Arsa",
+  ],
   alternates: {
     canonical: "/about",
   },

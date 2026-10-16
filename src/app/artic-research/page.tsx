@@ -17,6 +17,19 @@ export const metadata: Metadata = {
   title: "Artic Research",
   description:
     "Through Artic Research, we explore what people think, feel, and need — turning voices into clear insights that lead to better actions.",
+  keywords: [
+    "Artic Research",
+    "survei kepuasan masyarakat",
+    "survei IKM semarang",
+    "survei opini publik",
+    "riset persepsi publik",
+    "citizen satisfaction survey",
+    "market intelligence indonesia",
+    "consumer perception research",
+    "metodologi survei kuantitatif",
+    "evaluasi pelayanan publik",
+    "jasa survei independen",
+  ],
   alternates: {
     canonical: "/artic-research",
   },

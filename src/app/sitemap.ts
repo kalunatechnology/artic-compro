@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
-import { BLOG_ARTICLES, WORKS_IDS, EXPERT_SLUGS, TECHNICAL_SLUGS } from "@/lib/blog-data";
+import { BLOG_ARTICLES, WORKS_IDS, EXPERT_SLUGS, TECHNICAL_SLUGS, TAG_SLUGS } from "@/lib/blog-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.url;
@@ -83,10 +83,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
+  // Blog tag topic pages
+  const tagPages: MetadataRoute.Sitemap = TAG_SLUGS.map((tag) => ({
+    url: `${baseUrl}/blog/tag/${tag}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
   return [
     ...staticPages,
     ...worksPages,
     ...blogPages,
+    ...tagPages,
     ...expertPages,
     ...technicalPages,
   ];

@@ -93,3 +93,13 @@ export const EXPERT_SLUGS = [
 
 /** Technical team slugs for sitemap & metadata */
 export const TECHNICAL_SLUGS = ["rian-destianto"] as const;
+
+/** Blog tag slugs for sitemap & metadata hierarchy */
+export const TAG_SLUGS = [
+  "achievement",
+  "insight",
+  "case-study",
+  "policy",
+  "research",
+  "academy",
+] as const;

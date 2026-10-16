@@ -9,11 +9,11 @@ const TECHNICAL_TEAM = [
   {
     slug: "rian-destianto",
     name: "Rian Destianto",
-    role: "Data Analyst",
-    fields: ["MANAGING", "DATA ANALYST"],
+    role: "Chief Executive Officer & Lead Analyst",
+    fields: ["MANAGING", "DATA ANALYST", "STRATEGY"],
     bio: [
-      "Ayunina Zenti, S.P., M.Si. is an agribusiness specialist and data analyst with a strong academic background in agricultural economics. She completed her Bachelor's degree in Agribusiness at Universitas Jenderal Soedirman, focusing her research on Indonesia's agricultural export competitiveness—particularly the international market performance of clove commodities. Her academic work reflects a solid grasp of agribusiness analysis, commodity value chains, and market competitiveness studies.",
-      "At Artic Analytica, Ayunina serves as a Data Analyst, contributing to research design, quantitative data processing, and evidence-based policy interpretation. She combines her agribusiness expertise with analytical skills to support multi-sector studies, including regional development, socio-economic mapping, and public policy insights. Her multidisciplinary approach strengthens Artic Analytica's data-driven outputs, ensuring accuracy, clarity, and relevance across research projects.",
+      "Rian Destianto leads Artic Analytica as Chief Executive Officer with a strong focus on building a modern, insight-driven organization. With extensive experience in data research, analytics technology, and corporate strategy, he transforms complex data into clear, actionable direction for institutional and corporate clients.",
+      "At Artic Analytica, Rian drives innovation in survey methodologies, statistical data processing, and real-time analytical dashboards. His leadership ensures that client solutions are technically rigorous, strategically relevant, and impactful for decision-making.",
     ],
     stats: { citation: [2, 0] as [number, number], hIndex: [4, 0] as [number, number], i10Index: [0, 0] as [number, number] },
     image: "/images/who-we-are/profile-expert.png",
@@ -36,6 +36,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: member.name,
     description,
+    keywords: [
+      member.name,
+      member.role,
+      ...member.fields,
+      "CEO Artic Analytica",
+      "konsultan data analytics",
+    ],
     alternates: {
       canonical: `/who-we-are/technical/${member.slug}`,
     },

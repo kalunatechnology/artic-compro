@@ -75,23 +75,77 @@ graph TD
 ```
 
 1. **`Organization` & `Corporation` (Entity Root - `#organization`):**
-   - Berisi legal identity, logo resmi, nama alias, email, nomor WhatsApp Business (+62 811-2889-2244), koordinat fisik Semarang (MG Setos), dan link media sosial (`sameAs`).
+   - Berisi legal identity (`PT Sinergi Muda Arsa`), founder (`Rian Destianto`), tahun pendirian (`2024`), logo resmi, email, WhatsApp Business (+62 811-2889-2244), koordinat fisik Semarang (MG Setos), area cakupan (`ID`, `Global`), dan link media sosial (`sameAs`).
 2. **`WebSite` (`#website`):**
    - Menghubungkan situs dengan entitas `Organization` sebagai penerbit resmi dan mendeklarasikan array `hasPart` yang memetakan 6 rute utama.
+   - **Google Sitelinks SearchBox (Apple.com Technical SEO Standard):** Dilengkapi `potentialAction: SearchAction` mengarah ke query endpoint `articanalytica.com/blog?q={search_term_string}` untuk memicu kotak pencarian langsung di SERP Google.
 3. **`SiteNavigationElement` (Direct Sitelinks Trigger):**
-   - 6 entri skema eksplisit untuk mengarahkan algoritma sitelinks Google.
-4. **`BreadcrumbList` (`#breadcrumb`):**
-   - Dihasilkan secara otomatis di seluruh sub-halaman (`/about`, `/works`, `/works/[id]`, `/who-we-are`, `/who-we-are/expert/[slug]`, `/who-we-are/technical/[slug]`, `/artic-research`, `/contact`, `/blog`, `/blog/[slug]`).
-5. **Skema Spesifik Halaman:**
+   - 6 entri skema eksplisit untuk mengarahkan algoritma sitelinks Google (About Artic, Our Works, Artic Research, Who We Are, Artic Updates, Contact Us).
+4. **Apple Web App & Mobile Standards:**
+   - Meta tag `apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style: black-translucent`, `apple-mobile-web-app-title: Artic Analytica`, dan `format-detection: telephone=no`.
+5. **High-Intent Keyword Matrix per Page:**
+   - Homepage: Brand authority, firma riset data terukur, konsultan survei kebijakan.
+   - `/about`: Profil multidisiplin, visi misi, evidence-based policy advisory.
+   - `/artic-research`: Survei kepuasan masyarakat (IKM), opini publik, market research.
+   - `/works`: Portofolio studi kasus BRIDA Semarang, daya saing ekspor, business plan.
+   - `/who-we-are`: Pakar kebijakan publik, pakar ilmu pemerintahan UNDIP, analis data.
+   - `/blog`: Wawasan data analytics, ISO 9001 data consulting, visualisasi data.
+   - `/contact`: Konsultasi riset Semarang Jakarta, proposal survei, kontak resmi.
+6. **`BreadcrumbList` (`#breadcrumb`):**
+   - Dihasilkan secara otomatis di seluruh sub-halaman (`/about`, `/works`, `/works/[id]`, `/who-we-are`, `/who-we-are/expert/[slug]`, `/who-we-are/technical/[slug]`, `/artic-research`, `/contact`, `/blog`, `/blog/[slug]`, `/blog/tag/[tag]`).
+7. **Skema Spesifik Halaman:**
    - `/about`: `AboutPage`
    - `/works`: `CollectionPage`
    - `/works/[id]`: `CreativeWork`
    - `/artic-research`: `ItemPage` + `Service`
    - `/who-we-are`: `AboutPage`
    - `/who-we-are/expert/[slug]`: `Person` + `ProfilePage`
+   - `/who-we-are/technical/[slug]`: `Person` + `ProfilePage`
    - `/blog`: `Blog`
    - `/blog/[slug]`: `BlogPosting`
+   - `/blog/tag/[tag]`: `CollectionPage`
    - `/contact`: `ContactPage`
+
+---
+
+### 2.3 Hierarki Website 3-Tier Enterprise
+
+Arsitektur informasi situs ditata dengan struktur berjenjang yang bersih tanpa tautan buntu (zero 404):
+
+```mermaid
+graph TD
+    Root["Level 1: Homepage (/)"] --> About["Level 2: About (/about)"]
+    Root --> Research["Level 2: Artic Research (/artic-research)"]
+    Root --> Works["Level 2: Our Works (/works)"]
+    Root --> Team["Level 2: Who We Are (/who-we-are)"]
+    Root --> Blog["Level 2: Artic Updates (/blog)"]
+    Root --> Contact["Level 2: Contact Us (/contact)"]
+    
+    Works --> WorkDetail["Level 3: Proyek Riset (/works/[id])"]
+    Team --> ExpertDetail["Level 3: Profil Pakar (/who-we-are/expert/[slug])"]
+    Team --> TechDetail["Level 3: Profil Tim Teknis (/who-we-are/technical/[slug])"]
+    Blog --> BlogDetail["Level 3: Artikel Insight (/blog/[slug])"]
+    Blog --> BlogTag["Level 3: Kategori Topik (/blog/tag/[tag])"]
+    
+    LegacyServices["/services/*"] -.->|307 Redirect| Research
+```
+
+---
+
+### 2.4 Struktur Hierarki Manajemen Perusahaan
+
+Dalam skema `Organization` Knowledge Graph, struktur manajemen PT Sinergi Muda Arsa didefinisikan secara hierarkis:
+
+1. **Executive Leadership / C-Level:**
+   - **Rian Destianto** — *Chief Executive Officer & Founder*
+2. **Academic & Policy Advisory Board (Dewan Pakar Senior):**
+   - **Drs. Yuwanto, M.Si, P.hD.** — *Political Science & Government Senior Expert*
+   - **Huntal Hutapea, S.A.P., M.Si., M.Ed.** — *Public Policy Senior Expert*
+   - **Enar Ratriany Assa, SIP., MH** — *Political & Government Legal Expert*
+   - **Ayunina Zenti, S.P., M.Sc.** — *Management & Agribusiness Expert*
+   - **Fitria Barokah, S.IP., M.IP.** — *Political Science Expert*
+3. **Data Analytics & Research Operations:**
+   - Tim Analis Data & Lead Enumerator (Arof Fuddin, M. Noorman Perdana, Jonathan Benjamin, Ponco Adi Nugroho, dll.)
 
 ---
 

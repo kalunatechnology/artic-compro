@@ -12,6 +12,17 @@ export const metadata: Metadata = {
   title: "Who We Are",
   description:
     "Meet the team behind Artic Analytica — experts in political science, public policy, data analysis, and management driving data-informed decisions.",
+  keywords: [
+    "Who We Are Artic Analytica",
+    "tim pakar Artic Analytica",
+    "pakar kebijakan publik indonesia",
+    "pakar ilmu pemerintahan UNDIP",
+    "analis data statistik semarang",
+    "Drs Yuwanto PhD",
+    "Huntal Hutapea MSi MEd",
+    "Rian Destianto CEO",
+    "konsultan evaluasi RPJMD LPPD",
+  ],
   alternates: {
     canonical: "/who-we-are",
   },

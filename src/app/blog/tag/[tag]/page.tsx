@@ -8,6 +8,8 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PrimaryButton } from "@/components/common/primary-button";
 import { ArticleCard } from "@/components/common/article-card";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { BRAND } from "@/lib/seo/brand";
 
 const ARTICLES = [
   { id: 1, timestamp: new Date("2025-02-17"), date: "17 Februari 2025", title: "Quality Transformation: Artic Achieves ISO 9001 — Setting the Gold Standard in Data Consulting", thumbnail: "/images/insight/thumbnail-1.png", category: "Achievement" },
@@ -46,8 +48,33 @@ export default function TagPage({ params }: { params: Promise<{ tag: string }> }
   // Display name: un-slugify the tag
   const tagDisplay = tag.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
+  const tagSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${BRAND.url}/blog/tag/${tag}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BRAND.url}/` },
+          { "@type": "ListItem", position: 2, name: "Artic Updates", item: `${BRAND.url}/blog` },
+          { "@type": "ListItem", position: 3, name: tagDisplay, item: `${BRAND.url}/blog/tag/${tag}` },
+        ],
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": `${BRAND.url}/blog/tag/${tag}#webpage`,
+        url: `${BRAND.url}/blog/tag/${tag}`,
+        name: `Tag: ${tagDisplay} | ${BRAND.name}`,
+        isPartOf: { "@id": `${BRAND.url}/#website` },
+        about: { "@id": `${BRAND.url}/#organization` },
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd id={`tag-schema-${tag}`} data={tagSchema} />
       <Navbar />
 
       {/* HERO */}
@@ -74,7 +101,7 @@ export default function TagPage({ params }: { params: Promise<{ tag: string }> }
         <div className="flex items-center gap-4 text-[13px] font-medium tracking-[-0.36px] text-[#DCDCDC] md:text-[15px]">
           <Link href="/" className="hover:text-artic-teal-light transition-colors">Home</Link>
           <span>›</span>
-          <Link href="/blog" className="hover:text-artic-teal-light transition-colors">Artic Update</Link>
+          <Link href="/blog" className="hover:text-artic-teal-light transition-colors">Artic Updates</Link>
           <span>›</span>
           <span className="font-bold text-artic-teal-light underline">{tagDisplay}</span>
         </div>
